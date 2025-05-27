@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>  
+    <head>
+       <style>
+        body{
+            background-color:darkmagenta;
+            display:flex;
+            justify-content: center;
+            align-items:center;
+            height:100vh;
+            flex-direction:column;
+            gap:20px;
+        }
+        @media screen and(min-width:480px){
+            body{
+                width:480px;
+            }
+        }
+       .table{
+        width:300px;
+        height:400px;
+        border:5px solid green;
+        display:grid;
+        grid-template-columns: repeat(3,1fr);
+        gap:10px;
+        margin-top:100px;
+       }
+       .btn{
+        width:80px;
+        height:40px;
+        background-color:green;
+        color:white;
+        font-size:15px;
+        border:1px solid black;
+        border-radius:20px;
+        margin-top:50px;
+        margin-left:20px;
+       }
+       .square{
+        width:60px;
+        height:60px;
+        background-color:white;
+        color:black;
+        line-height: 50px;
+        /* display:flex;
+        justify-content:center;
+        align-items:center; */
+        text-align:center;
+        margin-top:20px;
+        margin-left:20px;
+        font-size:20px;
+        overflow:hidden;
+        border:1px solid black; 
+        border-radius:20px;
+       }
+       .middle h2,.middle1 h2{
+    font-size:30px;
+    color:orange;
+    font-family: 'Times New Roman', Times, serif;
+}
+.middle{
+    display:block;
+}
+.middle1{
+    display:none;
+}
+#result{
+    margin-top:50px;
+    font-size:30px;
+    color:blue;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    font-variant: initial;
+}
+       </style>
+    </head>
+    <body>
+        <div class="table" id="table">
+            <div class="square"id="square0"></div>
+            <div class="square"id="square1"></div>
+            <div class="square"id="square2"></div>
+            <div class="square"id="square3"></div>
+            <div class="square"id="square4"></div>
+            <div class="square"id="square5"></div>
+            <div class="square"id="square6"></div>
+            <div class="square"id="square7"></div>
+            <div class="square"id="square8"></div>
+        </div>
+        <h2 id="result"></h2>
+        <div class="middle">
+            <h2>IT's X Turn</h2>
+        </div>
+        <div class="middle1">
+            <h2>IT's O Turn</h2> 
+         </div>
+        <div class="restart">
+            <button class="btn" onclick="reset()">Reset</button>
+        </div>
+        <script>
+            const index=["X","O"];
+            let current=0;
+            let move=0;
+            const guess=document.querySelectorAll(".square");
+            guess.forEach((square,i)=>{
+                square.addEventListener("click",()=>
+                    handle(square));
+                //   console.log(i);
+                    update();
+            });
+            function handle(square){
+                if(square.textContent!=="")
+                return;
+                square.textContent=index[current];
+                move++;
+                update();
+                if(checkwinner()){
+                    document.querySelector("#result").innerText="Congratulations"  + index[current]  +  "wins";
+                    let middle=document.querySelector(".middle").style.display="none";
+                    let middle1=document.querySelector(".middle1").style.display="none";
+                    disable();
+                }
+                else if(move===9){
+                    document.querySelector("#result").innerText="It's Draw";
+                    let middle=document.querySelector(".middle").style.display="none";
+                    let middle1=document.querySelector(".middle1").style.display="none";
+                }
+                else{
+                    current=1-current;
+                    update();
+                }
+            }
+            function update(){
+               let middle=document.querySelector(".middle");
+               let middle1=document.querySelector(".middle1");
+               if(current==0){
+                middle.style.display="block";
+                middle1.style.display="none";
+               }
+               else{
+                middle.style.display="none";
+                 middle1.style.display="block";
+               }
+            }
+            function reset(){
+              history.go(0);    
+        }
+        function checkwinner(){
+            const  wins1=[[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
+            for(let [a,b,c] of wins1){
+                const v1=guess[a].textContent;
+                const v2=guess[b].textContent;
+                const v3=guess[c].textContent;
+                if(v1 && v1===v2 && v2===v3){
+                    return true;
+                }
+            }
+            return false;
+        }
+        function disable(){
+            guess.forEach(square=>{
+                square.style.pointerEvents="none";
+            });
+        }
+        update();
+
+        </script>
+    </body>
+</html>

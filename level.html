@@ -1,0 +1,79 @@
+<!DOCTYPE HTML> 
+<html>
+   <head>
+       <style>
+        *{
+            padding:0;
+            margin:0;
+        }
+        body{
+            background-color:chocolate;
+        }
+        .boxcontainer{
+            display:flex;
+            justify-content: center;
+            align-items:center;
+            flex-direction:column;
+            height:100vh;
+            gap:50px;
+        }
+        button{
+            width:270px;
+            height:50px;
+            font-size:30px;
+            font-style: normal;
+            font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            background-color:cornflowerblue;
+            color:black;
+            border-radius:20px;
+        }
+        button:hover{
+            box-shadow:3px 3px 12px 2px white;
+        }
+        .btn1{
+            width:100px;
+            height:40px;
+            background-color:grey;
+            color:beige;
+            font-size:20px;
+            font-style: italic;
+            font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            border:1px solid black;
+            border-radius:20px;
+        }
+        .last{
+            margin-left:50px;
+            margin-top: -100px;
+        }
+       </style>
+   </head>
+<body>
+   <div class="boxcontainer">
+    <div class="box1">
+        <a href="round.html">
+        <button onclick="level()">LOW LEVEL</button>
+        </a>
+    </div>
+    <div class="box2">
+        <a href="round.html">
+        <button onclick="level()">MEDIUM LEVEL</button>
+        </a>
+    </div>
+    <div class="box3">
+        <a href="round.html">
+        <button onclick="level()">HIGH LEVEL</button> 
+        </a>    
+    </div>
+   </div>
+   <div class="last">
+   <a href="game.html">
+   <button class="btn1">Back</button>
+   </a>
+   </div>
+   <script>
+    function level(){
+        window.location.href="round.html";
+    }
+   </script>
+</body>
+</html>

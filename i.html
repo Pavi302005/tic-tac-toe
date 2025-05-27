@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        /* .container{
+            width:500px;
+            height:500px;
+            border:1px solid black;
+            display:flex;
+            justify-content: center;
+            align-items: center;
+        } */
+        #dragItem{
+            width:100px;
+            height:80px;
+            background-color:blue;
+            color:black;
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            cursor:grab;
+            user-select:none;
+        }
+        .dropzone{
+            width:200px;
+            height:200px;
+            border: 2px dashed black;
+            margin-top:80px;
+            display:flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+<div class="middle"></div>
+<button onclick="change()">click</button>
+<script>
+ const index=["X","O"];
+ const index1=["IT'S X TURN ","IT'S O TURN"];
+ function  change(){
+ let current=Math.floor(Math.random()*10)%index.length;
+ console.log(current);
+ if(index[current]=="X"){
+    document.querySelector(".middle").innerText="IT'S X TURN "
+ }
+ else{
+    document.querySelector(".middle").innerText="IT'S O  TURN "  
+ }
+}
+</script>
+</body>
+</html>
